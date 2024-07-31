@@ -20,16 +20,16 @@ export default function ListingCard({ listing }) {
                             {listing.description}
                         </p>
                         <p className='text-slate-500 font-semibold mt-2'>
-                            $
-                            {listing.offer ? listing.discountedPrice.toLocaleString('en-US') : listing.regularPrice.toLocaleString('en-US')}
-                            {listing.type === 'rent' && ' / month'}
+                            R$
+                            {listing.offer ? listing.discountedPrice.toLocaleString('pt-BR') : listing.regularPrice.toLocaleString('pt-BR')}
+                            {listing.type === 'rent' && ' / mês'}
                         </p>
                         <div className='mt-2 flex items-center gap-4 text-slate-700'>
                             <div className='flex items-center gap-2 font-bold text-sm'>
-                                <FaBed className='text-lg' /> {listing.bedrooms > 1 ? `${listing.bedrooms} bedrooms` : `${listing.bedrooms} bedroom`}
+                                <FaBed className='text-lg' /> {listing.bedrooms > 1 ? `${listing.bedrooms} quartos` : `${listing.bedrooms} quarto`}
                             </div>
                             <div className='flex items-center gap-2 font-bold text-sm'>
-                                <FaBath className='text-lg' /> {listing.bathrooms > 1 ? `${listing.bathrooms} bathrooms` : `${listing.bedrooms} bathroom`}
+                                <FaBath className='text-lg' /> {listing.bathrooms > 1 ? `${listing.bathrooms} banheiros` : `${listing.bedrooms} banheiro`}
                             </div>
                         </div>
                     </div>
