@@ -7,7 +7,7 @@ export default function Search() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([]);
-    console.log(listings)
+    const [showMore, setShowMore] = useState(false);
 
     const [sidebarData, setSidebarData] = useState({
         searchTerm: '',
@@ -43,9 +43,15 @@ export default function Search() {
 
         const fetchListings = async () => {
             setLoading(true);
+            setShowMore(false);
             const searchQuery = urlParams.toString();
             const res = await fetch(`/api/listing/get?${searchQuery}`);
             const data = await res.json();
+            if (data.length > 8) {
+                setShowMore(true);
+            }else{
+                setShowMore(false)
+            }
             setListings(data);
             setLoading(false);
         }
@@ -82,6 +88,20 @@ export default function Search() {
         urlParams.set('order', sidebarData.order);
         const searchQuery = urlParams.toString();
         navigate(`/search?${searchQuery}`);
+    }
+
+    const onShowMoreClick = async () => {
+        const numberOfListings = listings.length;
+        const startIndex = numberOfListings;
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('startIndex', startIndex);
+        const searchQuery = urlParams.toString();
+        const res = await fetch(`/api/listing/get?${searchQuery}`);
+        const data = await res.json();
+        if(data.length < 9){
+            setShowMore(false);
+        }
+        setListings([...listings, ...data]);
     }
 
     return (
@@ -192,6 +212,13 @@ export default function Search() {
                             <ListingCard key={index} listing={listing} />
                         ))}
                     </div>
+                    {showMore && (
+                        <button onClick={onShowMoreClick}
+                            className='text-green-700 hover:underline p-7 w-full text-center'
+                        >
+                            Show more
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
