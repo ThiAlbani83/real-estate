@@ -29,7 +29,6 @@ export default function App() {
           <Route path='/update-listing/:listingId' element={<UpdateListing />} />
         </Route>
       </Routes>
-      <Footer />
     </BrowserRouter>
   )
 }

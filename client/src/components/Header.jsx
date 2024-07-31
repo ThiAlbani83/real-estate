@@ -46,7 +46,7 @@ export default function Header() {
                         <FaSearch className='text-slate-600' />
                     </button>
                 </form>
-                <ul className='flex gap-4'>
+                <ul className='flex gap-4 items-center'>
                     <Link to={'/'}>
                         <li className='hidden sm:inline text-slate-700 hover:underline cursor-pointer text-sm sm:text-base'>
                             Home
@@ -60,11 +60,10 @@ export default function Header() {
                     <Link to={'/profile'}>
                         {currentUser ? (
                             <img src={currentUser.avatar} alt="profile" className='rounded-full w-7 h-7 object-cover' />
-                        ) : <li className='text-slate-700 hover:underline cursor-pointer text-sm sm:text-base'>
-                            Sign In
+                        ) : <li className='text-white px-3 py-1 rounded-lg bg-slate-700 hover:underline cursor-pointer text-sm sm:text-base'>
+                            Entrar
                         </li>}
                     </Link>
-
                 </ul>
             </div>
         </header >
